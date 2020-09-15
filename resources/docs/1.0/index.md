@@ -1,2 +1,8 @@
 - ## Get Started
-    - [Overview](/{{route}}/{{version}}/overview)
+    - [Overview](/{{route}}/{{version}}/introduction)
+- ## Installation
+    - [Introduction](/{{route}}/{{version}}/installation-overview)
+    - [APIs & SDKs](/{{route}}/{{version}}/apis-and-sdks)
+    - [Logdo Server](/{{route}}/{{version}}/logdo-server)
+- ## Contributing
+    - [Getting started](/{{route}}/{{version}}/contributing)

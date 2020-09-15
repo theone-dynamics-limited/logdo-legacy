@@ -4,10 +4,11 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Logdo | Bringing back the fun in loggin</title>
+        <link rel="icon" type="image/png" href="/img/logo/logo.png"/>
 
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
         <!-- Styles -->
         <style>
@@ -16,7 +17,7 @@
 
         <style>
             body {
-                font-family: 'Nunito';
+                font-family: 'Poppins';
             }
         </style>
     </head>
@@ -25,7 +26,7 @@
 
             <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
                 <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
-                    <img src="/img/logo/logo.png" alt="logo" class="h-16 w-auto text-gray-700 sm:h-20">
+                    <img src="/img/logo/logo.png" alt="logo" class="rounded-lg h-16 w-auto text-gray-700 sm:h-20">
                     <h1 class="text-6xl ml-4 text-gray-700 font-extrabold">Logdo</h1>
                 </div>
 
