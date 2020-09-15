@@ -224,7 +224,7 @@
 
         @stack('modals')
 
-        @livewireScripts()
         <script src="{{ asset('js/app.js') }}"></script>
+        @livewireScripts()
     </body>
 </html>
