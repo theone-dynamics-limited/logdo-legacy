@@ -1,5 +1,5 @@
 - ## Get Started
-    - [Overview](/{{route}}/{{version}}/introduction)
+    - [Overview](/{{route}}/{{version}}/overview)
 - ## Installation
     - [Introduction](/{{route}}/{{version}}/installation-overview)
     - [APIs & SDKs](/{{route}}/{{version}}/apis-and-sdks)
