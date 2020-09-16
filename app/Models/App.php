@@ -43,15 +43,4 @@ class App extends Model
     {
         return md5(uniqid());
     }
-
-    public function log($request, $app)
-    {
-        // Handle this in a better way
-        SaveLog::dispatch($app, $request->all());
-        return true;
-    }
-
-    private function prepend(&$prefix, $to) {
-        return substr_replace($to, $prefix, 0, 0);
-    }
 }

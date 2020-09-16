@@ -56,13 +56,13 @@ class SaveLog implements ShouldQueue
         $log->details = $this->prepend($filtered_logs, $log->details);
 
         switch ($this->request['logLevel']) {
-            case Log::INFO:
+            case LoggerLog::INFO:
                 $log->info_count += 1;
                 break;
-            case Log::ERROR:
+            case LoggerLog::ERROR:
                 $log->error_count += 1;
                 break;
-            case Log::WARNING:
+            case LoggerLog::WARNING:
                 $log->warning_count += 1;
                 break;
             default:
@@ -80,5 +80,9 @@ class SaveLog implements ShouldQueue
         }
 
         \Log::info('Job handled');
+    }
+    
+    private function prepend(&$prefix, $to) {
+        return substr_replace($to, $prefix, 0, 0);
     }
 }
