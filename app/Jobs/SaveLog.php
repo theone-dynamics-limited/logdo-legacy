@@ -51,11 +51,11 @@ class SaveLog implements ShouldQueue
         }
 
         $breaks = "<br/><br/>";
-        $filtered_logs = str_replace("\\n", "<br/>", $this->request->log);
+        $filtered_logs = str_replace("\\n", "<br/>", $this->request['log']);
         $log->details = $this->prepend($breaks, $log->details);
         $log->details = $this->prepend($filtered_logs, $log->details);
 
-        switch ($this->request->logLevel) {
+        switch ($this->request['logLevel']) {
             case Log::INFO:
                 $log->info_count += 1;
                 break;
