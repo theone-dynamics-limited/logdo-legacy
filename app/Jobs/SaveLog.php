@@ -2,9 +2,10 @@
 
 namespace App\Jobs;
 
-use App\Models\Log;
+use Log;
 use App\Events\LogSaved;
 use Illuminate\Bus\Queueable;
+use App\Models\Log as LoggerLog;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
@@ -21,7 +22,7 @@ class SaveLog implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(Log $log)
+    public function __construct(LoggerLog $log)
     {
         $this->log = $log;
         \Log::info('Job dispatched');
