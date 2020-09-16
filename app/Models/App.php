@@ -47,7 +47,7 @@ class App extends Model
     public function log($request, $app)
     {
         // Handle this in a better way
-        SaveLog::dispatch($app);
+        SaveLog::dispatch($app, $request);
         return true;
     }
 
