@@ -15,16 +15,16 @@ class SaveLog implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public $log;
+    public $app;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(LoggerLog $log)
+    public function __construct($app)
     {
-        $this->log = $log;
+        $this->app = $app;
         \Log::info('Job dispatched');
     }
 
@@ -37,20 +37,30 @@ class SaveLog implements ShouldQueue
     {
         \Log::info('Job being handled');
 
+        $log = LoggerLog::whereDate('created_at', Carbon::today())
+            ->where('app_id', $this->app->id)
+            ->get()
+            ->first();
+
+        if (!$log) {
+            $log = new Log;
+            $log->app_id = $this->id;
+        }
+
         $breaks = "<br/><br/>";
         $filtered_logs = str_replace("\\n", "<br/>", $request->log);
-        $this->log->details = $this->prepend($breaks, $this->log->details);
-        $this->log->details = $this->prepend($filtered_logs, $this->log->details);
+        $log->details = $this->prepend($breaks, $log->details);
+        $log->details = $this->prepend($filtered_logs, $log->details);
 
         switch ($request->logLevel) {
             case Log::INFO:
-                $this->log->info_count += 1;
+                $log->info_count += 1;
                 break;
             case Log::ERROR:
-                $this->log->error_count += 1;
+                $log->error_count += 1;
                 break;
             case Log::WARNING:
-                $this->log->warning_count += 1;
+                $log->warning_count += 1;
                 break;
             default:
                 // Do something?
@@ -58,7 +68,7 @@ class SaveLog implements ShouldQueue
         }
 
         try{
-            if(!$this->log->save()){
+            if(!$log->save()){
                 \Log::info('Failed saving logs');
             }
             event(new LogSaved($log));

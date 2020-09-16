@@ -46,17 +46,8 @@ class App extends Model
 
     public function log($request, $app)
     {
-        $log = Log::whereDate('created_at', Carbon::today())
-            ->where('app_id', $app->id)
-            ->get()
-            ->first();
-
-        if (!$log) {
-            $log = new Log;
-            $log->app_id = $this->id;
-        }
-
-        SaveLog::dispatch($log);
+        // Handle this in a better way
+        SaveLog::dispatch($app);
         return true;
     }
 
