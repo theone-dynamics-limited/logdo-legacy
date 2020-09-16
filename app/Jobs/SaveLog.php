@@ -24,6 +24,7 @@ class SaveLog implements ShouldQueue
     public function __construct(Log $log)
     {
         $this->log = $log;
+        \Log::info('Job dispatched');
     }
 
     /**
@@ -33,6 +34,8 @@ class SaveLog implements ShouldQueue
      */
     public function handle()
     {
+        \Log::info('Job being handled');
+
         $breaks = "<br/><br/>";
         $filtered_logs = str_replace("\\n", "<br/>", $request->log);
         $this->log->details = $this->prepend($breaks, $this->log->details);
@@ -54,8 +57,10 @@ class SaveLog implements ShouldQueue
         }
 
         if(!$this->log->save()){
-            // Do something?
+            \Log::info('Failed saving logs');
         }
+
         event(new LogSaved($log));
+        \Log::info('Job handled');
     }
 }
