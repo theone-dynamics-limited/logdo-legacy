@@ -45,7 +45,7 @@ class SaveLog implements ShouldQueue
 
         if (!$log) {
             $log = new Log;
-            $log->app_id = $this->id;
+            $log->app_id = $this->app->id;
         }
 
         $breaks = "<br/><br/>";
