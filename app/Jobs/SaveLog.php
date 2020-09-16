@@ -17,15 +17,17 @@ class SaveLog implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     public $app;
+    public $request;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($app)
+    public function __construct($app, $request)
     {
         $this->app = $app;
+        $this->request = $request;
         \Log::info('Job dispatched');
     }
 
@@ -49,11 +51,11 @@ class SaveLog implements ShouldQueue
         }
 
         $breaks = "<br/><br/>";
-        $filtered_logs = str_replace("\\n", "<br/>", $request->log);
+        $filtered_logs = str_replace("\\n", "<br/>", $this->request->log);
         $log->details = $this->prepend($breaks, $log->details);
         $log->details = $this->prepend($filtered_logs, $log->details);
 
-        switch ($request->logLevel) {
+        switch ($this->request->logLevel) {
             case Log::INFO:
                 $log->info_count += 1;
                 break;
