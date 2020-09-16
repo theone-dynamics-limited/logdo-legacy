@@ -46,7 +46,7 @@ class SaveLog implements ShouldQueue
             ->first();
 
         if (!$log) {
-            $log = new Log;
+            $log = new LoggerLog;
             $log->app_id = $this->app->id;
         }
 
@@ -81,7 +81,7 @@ class SaveLog implements ShouldQueue
 
         \Log::info('Job handled');
     }
-    
+
     private function prepend(&$prefix, $to) {
         return substr_replace($to, $prefix, 0, 0);
     }
