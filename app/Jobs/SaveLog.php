@@ -56,11 +56,15 @@ class SaveLog implements ShouldQueue
                 break;
         }
 
-        if(!$this->log->save()){
-            \Log::info('Failed saving logs');
+        try{
+            if(!$this->log->save()){
+                \Log::info('Failed saving logs');
+            }
+            event(new LogSaved($log));
+        } catch(\Exception $e){
+            \Log::info($e->getMessage());
         }
 
-        event(new LogSaved($log));
         \Log::info('Job handled');
     }
 }
