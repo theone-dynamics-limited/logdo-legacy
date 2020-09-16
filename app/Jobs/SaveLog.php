@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use Log;
+use Carbon\Carbon;
 use App\Events\LogSaved;
 use Illuminate\Bus\Queueable;
 use App\Models\Log as LoggerLog;
